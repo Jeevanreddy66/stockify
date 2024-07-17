@@ -7,3 +7,10 @@ EPISODE - 01
 - Create Header & Footer for Online Shop.
 - Add Layout (Both Frontend & Back-office).
 - Deploy.
+
+EPISODE - 02
+
+- Design and Create Auth Pages
+  (Login, Signup, Forgot Password, Change Password, Verify Email)
+- Integrate Dashboard from Shadcn
+- Deploy
