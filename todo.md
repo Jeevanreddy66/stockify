@@ -14,3 +14,10 @@ EPISODE - 02
   (Login, Signup, Forgot Password, Change Password, Verify Email)
 - Integrate Dashboard from Shadcn
 - Deploy
+
+EPISODE - 03
+
+- Identify the required modules, pages & group them.
+- Add dropdown to sidebar.
+- Start designing of some pages.
+- Deploy

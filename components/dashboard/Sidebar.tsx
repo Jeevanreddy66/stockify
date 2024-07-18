@@ -16,8 +16,8 @@ import { Logo } from "../global";
 
 export const Sidebar: FC = () => {
   return (
-    <div className="hidden md:block border-r bg-muted/40">
-      <div className="h-full max-h-screen flex flex-col gap-2">
+    <div className="hidden md:block fixed md:w-[220px] lg:w-[280px] h-full max-h-screen border-r bg-muted/40">
+      <div className="flex flex-col gap-2">
         <div className="flex items-center border-b px-4 lg:px-6 h-14 lg:h-[60px]">
           <Logo />
 
@@ -27,7 +27,7 @@ export const Sidebar: FC = () => {
           </Button>
         </div>
 
-        <div className="flex-1">
+        <div className="w-full flex-1">
           <nav className="grid items-start text-sm font-medium px-2 lg:px-4">
             <Link
               href="#"
