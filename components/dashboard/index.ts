@@ -1,5 +1,6 @@
 import { Sidebar } from "./Sidebar";
 import { Header } from "./Header";
+import { NavigationLinks } from "./NavigationLinks";
 
 // Analytics Imports
 import { AnalyticsCard } from "./analytics";
@@ -21,4 +22,4 @@ export { BarChart };
 // Menu Exports
 export { AvatarMenu, QuickAccessMenu };
 
-export { Sidebar, Header };
+export { Sidebar, Header, NavigationLinks };

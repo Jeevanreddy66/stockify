@@ -21,3 +21,9 @@ EPISODE - 03
 - Add dropdown to sidebar.
 - Start designing of some pages.
 - Deploy
+
+EPISODE - 04
+
+- Build out Sidebar navigation & Navbar
+- Start on building categories page
+- Deploy

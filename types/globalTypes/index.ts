@@ -1,3 +1,4 @@
 import { FooterConfigType } from "./FooterConfig.type";
+import { SidebarConfigType } from "./SidebarConfig.type";
 
-export type { FooterConfigType };
+export type { FooterConfigType, SidebarConfigType };
