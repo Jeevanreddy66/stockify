@@ -27,3 +27,14 @@ EPISODE - 04
 - Build out Sidebar navigation & Navbar
 - Start on building categories page
 - Deploy
+
+EPISODE - 05
+
+- Install & Setup Prisma and MongoDB
+- Create Categories Model
+- Design Form and Form Inputs
+- Use and implement React Hook Forms/ Zod for form Validation
+- Create API's with Server Actions
+- Design Table for listing categories
+- Fetch categories list in the table for database.
+- Deploy

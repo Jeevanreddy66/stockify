@@ -10,6 +10,9 @@ import { TransactionsList } from "./analytics";
 // Charts Imports
 import { BarChart } from "./charts";
 
+// Forms Imports
+import { FormHeader, AddCategory } from "./forms";
+
 // Menu Imports
 import { AvatarMenu, QuickAccessMenu } from "./menu";
 
@@ -18,6 +21,9 @@ export { AnalyticsCard, AnalyticsTabs, TransactionsList };
 
 // Charts Exports
 export { BarChart };
+
+// Forms Exports
+export { FormHeader, AddCategory };
 
 // Menu Exports
 export { AvatarMenu, QuickAccessMenu };

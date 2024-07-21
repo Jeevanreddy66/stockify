@@ -11,7 +11,7 @@ const BackOfficeLayout = ({ children }: { children: ReactNode }) => {
       <div className="ml-0 md:ml-[220px] lg:ml-[280px] flex flex-col">
         <Header />
 
-        <main className="mt-14 lg:mt-[60px] flex-1 flex flex-col gap-4 p-4 lg:gap-8 lg:p-6">
+        <main className="mt-14 lg:mt-[60px] flex-1 flex flex-col gap-4 lg:gap-6 w-full max-w-[96%] lg:max-w-[92%] mx-auto py-8">
           {children}
         </main>
       </div>
