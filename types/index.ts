@@ -21,6 +21,7 @@ import {
   ImageUploadPropsType,
   TableHeaderPropsType,
   ActionColumnPropsType,
+  SearchFilterPropsType,
 } from "./propsTypes";
 
 // Export Data Types
@@ -42,4 +43,5 @@ export type {
   ImageUploadPropsType,
   TableHeaderPropsType,
   ActionColumnPropsType,
+  SearchFilterPropsType,
 };

@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import type { SelectOptionsType } from "@/types";
+
+import { useEffect, useState } from "react";
 import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -15,6 +16,14 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { ListFilter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -23,8 +32,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DataTableToolbar } from "./DataTableToolbar";
+import { DataTableViewOptions } from "./DataTableViewOptions";
 import { DataTablePagination } from "./DataTablePagination";
+import { SearchFilter } from "../tables";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -34,15 +44,28 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-  filterKeys = ["title"],
 }: DataTableProps<TData, TValue>) {
+  const statusOptions: SelectOptionsType[] = [
+    { value: "ACTIVE", label: "Active" },
+    { value: "ARCHIVED", label: "Archived" },
+    { value: "BLOCKED", label: "Blocked" },
+    { value: "FEATURED", label: "Featured" },
+    { value: "INACTIVE", label: "In-Active" },
+  ];
+
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
 
+  const [searchResults, setSearchResults] = useState<any[]>(data);
+
+  useEffect(() => {
+    setSearchResults(data);
+  }, [data]);
+
   const table = useReactTable({
-    data,
+    data: searchResults,
     columns,
     state: {
       sorting,
@@ -65,7 +88,36 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} filterKeys={filterKeys} />
+      <div className="flex items-center justify-between">
+        <SearchFilter data={data} setSearchResults={setSearchResults} />
+
+        <div className="flex items-center gap-3">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-1"
+              >
+                <ListFilter className="h-3.5 w-3.5" />
+                <span className="sr-only sm:not-sr-only sm:whitespace-nowrap text-sm">
+                  Filter Status
+                </span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {statusOptions.map(({ label, value }, i: number) => (
+                <DropdownMenuCheckboxItem key={i} checked>
+                  {label}
+                </DropdownMenuCheckboxItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <DataTableViewOptions table={table} />
+        </div>
+      </div>
+
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -116,6 +168,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+
       <DataTablePagination table={table} />
     </div>
   );

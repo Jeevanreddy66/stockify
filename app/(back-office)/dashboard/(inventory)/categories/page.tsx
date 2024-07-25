@@ -26,6 +26,7 @@ const CategoriesPage: FC = () => {
   return (
     <>
       <TableHeader
+        data={categories}
         title="Categories"
         href="/dashboard/categories/new"
         hrefText="New Category"

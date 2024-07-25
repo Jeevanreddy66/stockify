@@ -4,6 +4,8 @@ import { UploadButton, UploadDropzone } from "./uploadthing";
 import { generateSlug } from "./generateSlug";
 import { formatDateTime } from "./formatDateTime";
 import { formatSize } from "./formatSize";
+import { convertDataToExcel } from "./exportToExcel";
+import { formatFilename } from "./formatFileName";
 
 export {
   cn,
@@ -13,4 +15,6 @@ export {
   generateSlug,
   formatDateTime,
   formatSize,
+  convertDataToExcel,
+  formatFilename,
 };

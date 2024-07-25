@@ -6,6 +6,7 @@ import { SubmitButtonPropsType } from "./SubmitButtonProps.type";
 import { ImageUploadPropsType } from "./ImageUploadProps.type";
 import { TableHeaderPropsType } from "./TableHeaderProps.type";
 import { ActionColumnPropsType } from "./ActionColumnProps.type";
+import { SearchFilterPropsType } from "./SearchFilterProps.type";
 
 export type {
   FormInputPropsType,
@@ -16,4 +17,5 @@ export type {
   ImageUploadPropsType,
   TableHeaderPropsType,
   ActionColumnPropsType,
+  SearchFilterPropsType,
 };
