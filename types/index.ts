@@ -1,5 +1,5 @@
 // Import Data Tyes
-import { CategoryDataType } from "./dataTypes";
+import { CategoryDataType, ExcelCategoryDataType } from "./dataTypes";
 
 // Import Form Types
 import { AddCategoryFormType } from "./formTypes";
@@ -18,10 +18,13 @@ import {
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  ImageUploadPropsType,
+  TableHeaderPropsType,
+  ActionColumnPropsType,
 } from "./propsTypes";
 
 // Export Data Types
-export type { CategoryDataType };
+export type { CategoryDataType, ExcelCategoryDataType };
 
 // Export Form Types
 export type { AddCategoryFormType };
@@ -36,4 +39,7 @@ export type {
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  ImageUploadPropsType,
+  TableHeaderPropsType,
+  ActionColumnPropsType,
 };

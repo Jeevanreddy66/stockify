@@ -1,3 +1,7 @@
-import { createCategory } from "./category";
+import {
+  createCategory,
+  getAllCategories,
+  createBulkCategories,
+} from "./category";
 
-export { createCategory };
+export { createCategory, getAllCategories, createBulkCategories };

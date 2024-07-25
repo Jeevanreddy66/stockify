@@ -3,6 +3,9 @@ import { FormHeaderPropsType } from "./FormHeaderProps.type";
 import { TextInputPropsType } from "./TextInputProps.type";
 import { TextAreaPropsType } from "./TextAreaProps.type";
 import { SubmitButtonPropsType } from "./SubmitButtonProps.type";
+import { ImageUploadPropsType } from "./ImageUploadProps.type";
+import { TableHeaderPropsType } from "./TableHeaderProps.type";
+import { ActionColumnPropsType } from "./ActionColumnProps.type";
 
 export type {
   FormInputPropsType,
@@ -10,4 +13,7 @@ export type {
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  ImageUploadPropsType,
+  TableHeaderPropsType,
+  ActionColumnPropsType,
 };

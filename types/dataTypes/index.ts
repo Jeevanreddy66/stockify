@@ -1,3 +1,3 @@
-import { CategoryDataType } from "./CategoryData.type";
+import { CategoryDataType, ExcelCategoryDataType } from "./CategoryData.type";
 
-export type { CategoryDataType };
+export type { CategoryDataType, ExcelCategoryDataType };

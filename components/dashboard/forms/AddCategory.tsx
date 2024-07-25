@@ -3,14 +3,14 @@
 import type { SelectValue } from "react-tailwindcss-select/dist/components/type";
 import type { AddCategoryFormType, SelectOptionsType } from "@/types";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC, useState } from "react";
 import Select from "react-tailwindcss-select";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import placeholderImage from "@/public/placeholder.svg";
-import { UploadButton, generateSlug } from "@/lib";
+import { generateSlug } from "@/lib";
+import { createCategory } from "@/actions";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,9 +20,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { TextArea, TextInput } from "@/components/global";
+import { ImageUpload, TextArea, TextInput } from "@/components/global";
 import { FormHeader } from "./FormHeader";
-import { createCategory } from "@/actions";
 
 export const AddCategory: FC = () => {
   const options: SelectOptionsType[] = [
@@ -57,7 +56,7 @@ export const AddCategory: FC = () => {
       let categoryData: any = {};
 
       categoryData.slug = generateSlug(data.title);
-      categoryData.imageUrl = imageUrl;
+      categoryData.imageUrl = typeof imageUrl == "string" ? imageUrl : "";
       categoryData.status = statusValue.value;
 
       categoryData = { ...data, ...categoryData };
@@ -70,6 +69,8 @@ export const AddCategory: FC = () => {
 
       // Reset Form Data
       reset();
+      setStatusValue(null);
+      setImageUrl(placeholderImage);
 
       // Route back to categories page
       router.push("/dashboard/categories");
@@ -89,7 +90,7 @@ export const AddCategory: FC = () => {
         <div className="col-span-full lg:col-span-8 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Create Category</CardTitle>
+              <CardTitle>Category Details</CardTitle>
               <CardDescription>
                 Lipsum dolor sit amet, consectetur adipiscing elit
               </CardDescription>
@@ -116,8 +117,8 @@ export const AddCategory: FC = () => {
           </Card>
         </div>
 
-        <div className="col-span-full lg:col-span-4 flex lg:flex-col gap-6">
-          <Card className="w-[50%] lg:w-full h-fit">
+        <div className="col-span-full lg:col-span-4 flex lg:flex-col flex-wrap md:flex-nowrap gap-6">
+          <Card className="w-full md:w-[50%] lg:w-full h-fit">
             <CardContent>
               <div className="grid gap-3">
                 <Label htmlFor="status" className="font-semibold text-lg mt-3">
@@ -136,29 +137,14 @@ export const AddCategory: FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="overflow-hidden w-[50%] lg:w-full">
+          <Card className="overflow-hidden w-full md:w-[50%] lg:w-full">
             <CardContent>
-              <div className="grid gap-3">
-                <Label htmlFor="image" className="font-semibold text-lg mt-3">
-                  Category Image
-                </Label>
-                <Image
-                  alt="category-image"
-                  className="h-40 w-full rounded-md object-cover"
-                  height="300"
-                  src={imageUrl}
-                  width="300"
-                />
-
-                <UploadButton
-                  endpoint="categoryImage"
-                  onClientUploadComplete={(res) => setImageUrl(res[0].url)}
-                  onUploadError={(error: Error) => {
-                    // Do something with the error.
-                    alert(`ERROR! ${error.message}`);
-                  }}
-                />
-              </div>
+              <ImageUpload
+                label="Category Image"
+                imageUrl={imageUrl}
+                setImageUrl={setImageUrl}
+                endpoint="categoryImage"
+              />
             </CardContent>
           </Card>
         </div>

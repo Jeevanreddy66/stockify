@@ -28,7 +28,7 @@ EPISODE - 04
 - Start on building categories page
 - Deploy
 
-EPISODE - 05
+EPISODE - 05, 06 & 07
 
 - Install & Setup Prisma and MongoDB
 - Create Categories Model
@@ -37,4 +37,10 @@ EPISODE - 05
 - Create API's with Server Actions
 - Design Table for listing categories
 - Fetch categories list in the table for database.
+- Deploy
+
+EPISODE - 08
+
+- Integrate Data Table with Pagination
+- Implement Import and Export Functionalities
 - Deploy

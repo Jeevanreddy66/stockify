@@ -16,6 +16,9 @@ import { FormHeader, AddCategory } from "./forms";
 // Menu Imports
 import { AvatarMenu, QuickAccessMenu } from "./menu";
 
+// Tables Imports
+import { TableHeader } from "./tables";
+
 // Analytics Exports
 export { AnalyticsCard, AnalyticsTabs, TransactionsList };
 
@@ -27,5 +30,8 @@ export { FormHeader, AddCategory };
 
 // Menu Exports
 export { AvatarMenu, QuickAccessMenu };
+
+// Tables Exports
+export { TableHeader };
 
 export { Sidebar, Header, NavigationLinks };

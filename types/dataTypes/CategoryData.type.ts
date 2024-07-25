@@ -7,3 +7,10 @@ export type CategoryDataType = {
   imageUrl: string;
   status: CategoryStatus;
 };
+
+export type ExcelCategoryDataType = {
+  Image?: string;
+  Title: string;
+  Description?: string;
+  Status?: string;
+};
