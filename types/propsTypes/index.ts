@@ -7,6 +7,7 @@ import { ImageUploadPropsType } from "./ImageUploadProps.type";
 import { TableHeaderPropsType } from "./TableHeaderProps.type";
 import { ActionColumnPropsType } from "./ActionColumnProps.type";
 import { SearchFilterPropsType } from "./SearchFilterProps.type";
+import { AddCategoryPropsType } from "./AddCategoryProps.type";
 
 export type {
   FormInputPropsType,
@@ -18,4 +19,5 @@ export type {
   TableHeaderPropsType,
   ActionColumnPropsType,
   SearchFilterPropsType,
+  AddCategoryPropsType,
 };

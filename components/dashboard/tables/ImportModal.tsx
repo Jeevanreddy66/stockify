@@ -112,6 +112,8 @@ export const ImportModal: FC = () => {
             setIsUploadComplete(true);
             toast.success("Created Categories Successfully!🔥");
             setLoading(false);
+
+            window.location.reload();
           } catch (error: any) {
             console.log(`Error : ${error.message}`);
             setIsUploadComplete(false);

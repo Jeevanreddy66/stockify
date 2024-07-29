@@ -11,6 +11,7 @@ export const FormHeader: FC<FormHeaderPropsType> = ({
   title,
   goBack,
   loading,
+  isEdit,
 }) => {
   return (
     <div className="flex items-center gap-4">
@@ -26,7 +27,9 @@ export const FormHeader: FC<FormHeaderPropsType> = ({
         <span className="sr-only">Back</span>
       </Button>
 
-      <h2 className="text-lg font-semibold shrink-0">New {title}</h2>
+      <h2 className="text-lg font-semibold shrink-0">
+        {isEdit ? "Update" : "New"} {title}
+      </h2>
 
       <div className="ml-auto flex items-center gap-4">
         <Button
@@ -39,7 +42,7 @@ export const FormHeader: FC<FormHeaderPropsType> = ({
           Discard
         </Button>
 
-        <SubmitButton title={title} loading={loading} />
+        <SubmitButton title={title} loading={loading} isEdit={isEdit} />
       </div>
     </div>
   );

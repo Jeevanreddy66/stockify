@@ -22,6 +22,7 @@ import {
   TableHeaderPropsType,
   ActionColumnPropsType,
   SearchFilterPropsType,
+  AddCategoryPropsType,
 } from "./propsTypes";
 
 // Export Data Types
@@ -44,4 +45,5 @@ export type {
   TableHeaderPropsType,
   ActionColumnPropsType,
   SearchFilterPropsType,
+  AddCategoryPropsType,
 };

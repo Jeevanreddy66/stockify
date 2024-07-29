@@ -1,7 +1,17 @@
 import {
   createCategory,
-  getAllCategories,
   createBulkCategories,
+  getAllCategories,
+  getCategoryById,
+  updateCategoryById,
+  deleteItem,
 } from "./category";
 
-export { createCategory, getAllCategories, createBulkCategories };
+export {
+  createCategory,
+  createBulkCategories,
+  getAllCategories,
+  getCategoryById,
+  updateCategoryById,
+  deleteItem,
+};

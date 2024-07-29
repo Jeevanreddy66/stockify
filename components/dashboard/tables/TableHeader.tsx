@@ -4,7 +4,7 @@ import type { TableHeaderPropsType } from "@/types";
 
 import Link from "next/link";
 import { FC } from "react";
-import { ListFilter, PlusCircle, Search, Table } from "lucide-react";
+import { PlusCircle, Table } from "lucide-react";
 import { convertDataToExcel, formatFilename } from "@/lib";
 import { Button } from "@/components/ui/button";
 import { ImportModal } from "./ImportModal";

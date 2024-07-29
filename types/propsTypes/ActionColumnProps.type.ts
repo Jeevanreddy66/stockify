@@ -1,6 +1,8 @@
+import type { ModelType } from "@/lib";
+
 export type ActionColumnPropsType = {
   row: any;
-  title: string;
+  model: ModelType;
   editEndpoint: string;
   id: string | undefined;
 };
