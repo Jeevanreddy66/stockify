@@ -1,3 +1,4 @@
 import { AddCategoryFormType } from "./AddCategoryForm.type";
+import { AddBrandFormType } from "./AddBrandForm.type";
 
-export type { AddCategoryFormType };
+export type { AddCategoryFormType, AddBrandFormType };

@@ -8,6 +8,7 @@ import { TableHeaderPropsType } from "./TableHeaderProps.type";
 import { ActionColumnPropsType } from "./ActionColumnProps.type";
 import { SearchFilterPropsType } from "./SearchFilterProps.type";
 import { AddCategoryPropsType } from "./AddCategoryProps.type";
+import { AddBrandPropsType } from "./AddBrandProps.type";
 
 export type {
   FormInputPropsType,
@@ -20,4 +21,5 @@ export type {
   ActionColumnPropsType,
   SearchFilterPropsType,
   AddCategoryPropsType,
+  AddBrandPropsType,
 };

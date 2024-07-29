@@ -1,8 +1,12 @@
 // Import Data Tyes
-import { CategoryDataType, ExcelCategoryDataType } from "./dataTypes";
+import {
+  CategoryDataType,
+  ExcelCategoryDataType,
+  BrandDataType,
+} from "./dataTypes";
 
 // Import Form Types
-import { AddCategoryFormType } from "./formTypes";
+import { AddCategoryFormType, AddBrandFormType } from "./formTypes";
 
 // Import Global Types
 import {
@@ -23,13 +27,14 @@ import {
   ActionColumnPropsType,
   SearchFilterPropsType,
   AddCategoryPropsType,
+  AddBrandPropsType,
 } from "./propsTypes";
 
 // Export Data Types
-export type { CategoryDataType, ExcelCategoryDataType };
+export type { CategoryDataType, ExcelCategoryDataType, BrandDataType };
 
 // Export Form Types
-export type { AddCategoryFormType };
+export type { AddCategoryFormType, AddBrandFormType };
 
 // Export Global Types
 export type { FooterConfigType, SidebarConfigType, SelectOptionsType };
@@ -46,4 +51,5 @@ export type {
   ActionColumnPropsType,
   SearchFilterPropsType,
   AddCategoryPropsType,
+  AddBrandPropsType,
 };

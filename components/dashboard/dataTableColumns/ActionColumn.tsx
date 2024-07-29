@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FC } from "react";
 import toast from "react-hot-toast";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
-import { deleteItem } from "@/actions";
+import { deleteCategory, deleteBrand } from "@/actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -27,14 +27,24 @@ export const ActionColumn: FC<ActionColumnPropsType> = ({
 
   const handleDeleteItem = async (): Promise<void> => {
     try {
-      const res = await deleteItem(id, model);
+      let res: any;
+      switch (model) {
+        case "category":
+          res = await deleteCategory(id);
+          break;
+        case "brand":
+          res = await deleteBrand(id);
+          break;
+        default:
+          break;
+      }
       toast.success(`${model} Deleted Successfully!`);
 
       if (res?.success) window.location.reload();
     } catch (error: any) {
       console.log(`Error : ${error.message}`);
 
-      toast.error("Error: Failed to delete the category!");
+      toast.error(`Error: Failed to delete the ${model}!`);
     }
   };
 

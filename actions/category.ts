@@ -3,7 +3,7 @@
 import type { CategoryDataType } from "@/types";
 
 import { revalidatePath } from "next/cache";
-import { ModelType, prisma } from "@/lib";
+import { prisma } from "@/lib";
 
 export async function createCategory(categoryData: CategoryDataType) {
   const slug = categoryData.slug;
@@ -104,15 +104,15 @@ export async function updateCategoryById(
   }
 }
 
-export async function deleteItem(id: string, model: ModelType) {
+export async function deleteCategory(id: string) {
   try {
-    const deletedItem = await prisma[`${model}`].delete({
+    const deletedCategory = await prisma.category.delete({
       where: { id },
     });
 
     return {
       success: true,
-      data: deletedItem,
+      data: deletedCategory,
     };
   } catch (error: any) {
     console.log(`Error : ${error.message}`);

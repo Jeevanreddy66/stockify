@@ -1,5 +1,5 @@
 import { cn } from "./utils";
-import { prisma, ModelType } from "./db";
+import { prisma } from "./db";
 import { UploadButton, UploadDropzone } from "./uploadthing";
 import { generateSlug } from "./generateSlug";
 import { formatDateTime } from "./formatDateTime";
@@ -18,5 +18,3 @@ export {
   convertDataToExcel,
   formatFilename,
 };
-
-export type { ModelType };

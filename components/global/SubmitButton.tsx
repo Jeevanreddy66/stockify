@@ -11,7 +11,7 @@ export const SubmitButton: FC<SubmitButtonPropsType> = ({
   title,
   loading,
   loadingText = "Saving, Please wait...",
-  isEdit = false,
+  isEdit,
 }) => {
   return (
     <Button type="submit" size="sm" disabled={loading}>

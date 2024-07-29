@@ -28,7 +28,7 @@ import { ImageUpload, TextArea, TextInput } from "@/components/global";
 import { FormHeader } from "./FormHeader";
 
 export const AddCategory: FC<AddCategoryPropsType> = ({
-  isEdit,
+  isEdit = false,
   initialData,
 }) => {
   const options: SelectOptionsType[] = [

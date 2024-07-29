@@ -4,8 +4,17 @@ import {
   getAllCategories,
   getCategoryById,
   updateCategoryById,
-  deleteItem,
+  deleteCategory,
 } from "./category";
+
+import {
+  createBrand,
+  createBulkBrands,
+  getAllBrands,
+  getBrandById,
+  updateBrandById,
+  deleteBrand,
+} from "./brand";
 
 export {
   createCategory,
@@ -13,5 +22,11 @@ export {
   getAllCategories,
   getCategoryById,
   updateCategoryById,
-  deleteItem,
+  deleteCategory,
+  createBrand,
+  createBulkBrands,
+  getAllBrands,
+  getBrandById,
+  updateBrandById,
+  deleteBrand,
 };
