@@ -1,11 +1,12 @@
 "use client";
 
-import type { CategoryDataType } from "@/types";
+import type { Url } from "next/dist/shared/lib/router/router";
+import type { ImportModalPropsType } from "@/types";
 
 import Link from "next/link";
 import { ChangeEvent, FC, useState } from "react";
-import * as XLSX from "xlsx";
 import toast from "react-hot-toast";
+import * as XLSX from "xlsx";
 import {
   Check,
   FileDown,
@@ -14,7 +15,11 @@ import {
   UploadCloud,
   X,
 } from "lucide-react";
-import { createBulkCategories } from "@/actions";
+import {
+  createBulkBrands,
+  createBulkCategories,
+  createBulkWarehouses,
+} from "@/actions";
 import { formatSize, generateSlug } from "@/lib";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,12 +33,25 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-export const ImportModal: FC = () => {
+export const ImportModal: FC<ImportModalPropsType> = ({ model, title }) => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [jsonData, setJsonData] = useState<string>("");
   const [isPreview, setIsPreview] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [isUploadComplete, setIsUploadComplete] = useState<boolean>(false);
+
+  const handleSampleDownload = (): Url => {
+    switch (model) {
+      case "category":
+        return "/categories.xlsx";
+      case "brand":
+        return "/brands.xlsx";
+      case "warehouse":
+        return "/warehouses.xlsx";
+      default:
+        return "";
+    }
+  };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>): void =>
     setUploadedFile(e.target.files ? e.target.files[0] : null);
@@ -89,31 +107,80 @@ export const ImportModal: FC = () => {
           const json = XLSX.utils.sheet_to_json(workSheet);
           setJsonData(JSON.stringify(json, null, 2));
 
-          const categories: CategoryDataType[] = json.map(
-            ({
-              Image = "",
-              Title,
-              Description = "",
-              Status = "ACTIVE",
-            }: any) => {
-              return {
-                title: Title,
-                slug: generateSlug(Title),
-                description: Description,
-                status: Status,
-                imageUrl: Image,
-              };
-            }
-          );
-
           try {
             setLoading(true);
-            await createBulkCategories(categories);
-            setIsUploadComplete(true);
-            toast.success("Created Categories Successfully!🔥");
-            setLoading(false);
 
-            window.location.reload();
+            let reqData: any;
+
+            switch (model) {
+              case "category":
+                reqData = json.map(
+                  ({
+                    Image = "",
+                    Title,
+                    Description = "",
+                    Status = "ACTIVE",
+                  }: any) => {
+                    return {
+                      title: Title,
+                      slug: generateSlug(Title),
+                      description: Description,
+                      status: Status,
+                      imageUrl: Image,
+                    };
+                  }
+                );
+                await createBulkCategories(reqData);
+                break;
+              case "brand":
+                reqData = json.map(
+                  ({ Logo = "", Title, Status = "ACTIVE" }: any) => {
+                    return {
+                      title: Title,
+                      slug: generateSlug(Title),
+                      status: Status,
+                      logo: Logo,
+                    };
+                  }
+                );
+                await createBulkBrands(reqData);
+                break;
+              case "warehouse":
+                reqData = json.map(
+                  ({
+                    Logo = "",
+                    Name,
+                    Status = "ACTIVE",
+                    Contact_Person = "",
+                    Email,
+                    Phone,
+                    City = "",
+                    Country = "",
+                    Zipcode,
+                  }: any) => {
+                    return {
+                      name: Name,
+                      slug: generateSlug(Name),
+                      status: Status,
+                      logo: Logo,
+                      contactPerson: Contact_Person,
+                      email: Email,
+                      phone: Phone,
+                      city: City,
+                      country: Country,
+                      zipCode: Zipcode,
+                    };
+                  }
+                );
+                await createBulkWarehouses(reqData);
+                break;
+              default:
+                break;
+            }
+
+            setIsUploadComplete(true);
+            toast.success(`Created ${title} Successfully!🔥`);
+            setLoading(false);
           } catch (error: any) {
             console.log(`Error : ${error.message}`);
             setIsUploadComplete(false);
@@ -167,7 +234,9 @@ export const ImportModal: FC = () => {
                 </p>
 
                 <DialogClose asChild>
-                  <Button size="sm">Close</Button>
+                  <Button size="sm" onClick={() => window.location.reload()}>
+                    Close
+                  </Button>
                 </DialogClose>
               </div>
             ) : (
@@ -184,7 +253,7 @@ export const ImportModal: FC = () => {
                       asChild
                       className="w-full"
                     >
-                      <Link href="/categories.xlsx" download>
+                      <Link href={handleSampleDownload()} download>
                         Download Sample Data
                       </Link>
                     </Button>

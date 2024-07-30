@@ -14,6 +14,7 @@ export const TableHeader: FC<TableHeaderPropsType> = ({
   title,
   href,
   hrefText,
+  model,
 }) => {
   const handleDataExport = (): void => {
     const formattedName = formatFilename(title);
@@ -39,10 +40,10 @@ export const TableHeader: FC<TableHeaderPropsType> = ({
             </span>
           </Button>
 
-          <ImportModal />
+          <ImportModal model={model} title={title} />
 
-          <Button asChild size="sm" className="flex items-center gap-1">
-            <Link href={href}>
+          <Button asChild size="sm">
+            <Link href={href} className="flex items-center gap-2">
               <PlusCircle className="w-4 h-4" />
               <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
                 {hrefText}

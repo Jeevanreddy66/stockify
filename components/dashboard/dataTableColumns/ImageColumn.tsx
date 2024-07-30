@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FC } from "react";
+import placeholderImage from "@/public/placeholder.svg";
 
 export const ImageColumn: FC<{
   row: any;
@@ -11,7 +12,7 @@ export const ImageColumn: FC<{
 
   return (
     <Image
-      src={imageUrl}
+      src={imageUrl || placeholderImage}
       width="64"
       height="64"
       alt={`${accessorKey}`}

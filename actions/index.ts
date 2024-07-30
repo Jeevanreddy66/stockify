@@ -16,6 +16,15 @@ import {
   deleteBrand,
 } from "./brand";
 
+import {
+  createWarehouse,
+  createBulkWarehouses,
+  getAllWarehouses,
+  getWarehouseById,
+  updateWarehouseById,
+  deleteWarehouse,
+} from "./warehouse";
+
 export {
   createCategory,
   createBulkCategories,
@@ -29,4 +38,10 @@ export {
   getBrandById,
   updateBrandById,
   deleteBrand,
+  createWarehouse,
+  createBulkWarehouses,
+  getAllWarehouses,
+  getWarehouseById,
+  updateWarehouseById,
+  deleteWarehouse,
 };

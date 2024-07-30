@@ -30,6 +30,7 @@ const CategoriesPage: FC = () => {
         title="Categories"
         href="/dashboard/categories/new"
         hrefText="New Category"
+        model="category"
       />
 
       <DataTable data={categories} columns={columns} />

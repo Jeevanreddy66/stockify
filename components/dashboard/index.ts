@@ -11,7 +11,7 @@ import { TransactionsList } from "./analytics";
 import { BarChart } from "./charts";
 
 // Forms Imports
-import { FormHeader, AddCategory, AddBrand } from "./forms";
+import { FormHeader, AddCategory, AddBrand, AddWarehouse } from "./forms";
 
 // Menu Imports
 import { AvatarMenu, QuickAccessMenu } from "./menu";
@@ -26,7 +26,7 @@ export { AnalyticsCard, AnalyticsTabs, TransactionsList };
 export { BarChart };
 
 // Forms Exports
-export { FormHeader, AddCategory, AddBrand };
+export { FormHeader, AddCategory, AddBrand, AddWarehouse };
 
 // Menu Exports
 export { AvatarMenu, QuickAccessMenu };

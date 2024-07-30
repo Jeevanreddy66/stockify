@@ -9,6 +9,8 @@ import { ActionColumnPropsType } from "./ActionColumnProps.type";
 import { SearchFilterPropsType } from "./SearchFilterProps.type";
 import { AddCategoryPropsType } from "./AddCategoryProps.type";
 import { AddBrandPropsType } from "./AddBrandProps.type";
+import { ImportModalPropsType } from "./ImportModalProps.type";
+import { AddWarehousePropsType } from "./AddWarehouseProps.type";
 
 export type {
   FormInputPropsType,
@@ -22,4 +24,6 @@ export type {
   SearchFilterPropsType,
   AddCategoryPropsType,
   AddBrandPropsType,
+  ImportModalPropsType,
+  AddWarehousePropsType,
 };

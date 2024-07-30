@@ -4,6 +4,7 @@ import { DateColumn } from "./DateColumn";
 import { TitleColumn } from "./TitleColumn";
 import { ActionColumn } from "./ActionColumn";
 import { StatusColumn } from "./StatusColumn";
+import { InfoColumn } from "./InfoColumn";
 
 export {
   SortableColumn,
@@ -12,4 +13,5 @@ export {
   TitleColumn,
   ActionColumn,
   StatusColumn,
+  InfoColumn,
 };

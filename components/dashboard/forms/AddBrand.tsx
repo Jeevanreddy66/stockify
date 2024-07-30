@@ -176,7 +176,7 @@ export const AddBrand: FC<AddBrandPropsType> = ({
         </div>
 
         <div className="col-span-full lg:col-span-4 flex lg:flex-col flex-wrap md:flex-nowrap gap-6">
-          <Card className="overflow-hidden w-full md:w-[50%] lg:w-full">
+          <Card className="overflow-hidden w-full">
             <CardContent>
               <ImageUpload
                 label="Brand Logo"

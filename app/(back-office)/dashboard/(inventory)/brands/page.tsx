@@ -31,6 +31,7 @@ const BrandsPage: FC = () => {
         title="Brands"
         href="/dashboard/brands/new"
         hrefText="New Brand"
+        model="brand"
       />
 
       <DataTable data={brands} columns={columns} />

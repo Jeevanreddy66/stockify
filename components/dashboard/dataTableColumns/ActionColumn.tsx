@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FC } from "react";
 import toast from "react-hot-toast";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
-import { deleteCategory, deleteBrand } from "@/actions";
+import { deleteCategory, deleteBrand, deleteWarehouse } from "@/actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,6 +16,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export const ActionColumn: FC<ActionColumnPropsType> = ({
   row,
@@ -34,6 +45,9 @@ export const ActionColumn: FC<ActionColumnPropsType> = ({
           break;
         case "brand":
           res = await deleteBrand(id);
+          break;
+        case "warehouse":
+          res = await deleteWarehouse(id);
           break;
         default:
           break;
@@ -68,13 +82,34 @@ export const ActionColumn: FC<ActionColumnPropsType> = ({
             <Pencil className="w-3.5 h-3.5 text-blue-500" />
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem
-          onClick={handleDeleteItem}
-          className="flex items-center justify-between px-4 flex-nowrap cursor-pointer"
-        >
-          <span className="text-red-500">Delete</span>
-          <Trash className="w-4 h-4 text-red-500" />
-        </DropdownMenuItem>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="w-full flex items-center justify-between px-4 flex-nowrap"
+            >
+              <span className="text-red-500">Delete</span>
+              <Trash className="w-4 h-4 text-red-500" />
+            </Button>
+          </AlertDialogTrigger>
+
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogDescription>
+                This action cannot be undone. This will permanently delete the{" "}
+                {model}.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDeleteItem}>
+                Yes, Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </DropdownMenuContent>
     </DropdownMenu>
   );
