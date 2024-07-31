@@ -1,20 +1,20 @@
 "use client";
 
-import type { Warehouse } from "@prisma/client";
+import type { Unit } from "@prisma/client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   SortableColumn,
   ImageColumn,
+  DateColumn,
   TitleColumn,
   ActionColumn,
   StatusColumn,
   InfoColumn,
-  DateColumn,
 } from "@/components/dashboard/dataTableColumns";
 
-export const columns: ColumnDef<Warehouse>[] = [
+export const columns: ColumnDef<Unit>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -38,39 +38,19 @@ export const columns: ColumnDef<Warehouse>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "logo",
-    header: "Logo",
-    cell: ({ row }) => <ImageColumn row={row} accessorKey="logo" />,
-  },
-  {
     accessorKey: "name",
     header: ({ column }) => <SortableColumn column={column} title="Title" />,
     cell: ({ row }) => <TitleColumn row={row} accessorKey="name" />,
   },
   {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <StatusColumn row={row} accessorKey="status" />,
+    accessorKey: "shortName",
+    header: "Abbreviation",
+    cell: ({ row }) => <InfoColumn row={row} accessorKey="shortName" />,
   },
   {
-    accessorKey: "email",
-    header: "Email",
-    cell: ({ row }) => <InfoColumn row={row} accessorKey="email" />,
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-    cell: ({ row }) => <InfoColumn row={row} accessorKey="phone" />,
-  },
-  {
-    accessorKey: "city",
-    header: "City",
-    cell: ({ row }) => <InfoColumn row={row} accessorKey="city" />,
-  },
-  {
-    accessorKey: "country",
-    header: "Country",
-    cell: ({ row }) => <InfoColumn row={row} accessorKey="country" />,
+    accessorKey: "type",
+    header: "Unit Type",
+    cell: ({ row }) => <StatusColumn row={row} accessorKey="type" />,
   },
   {
     accessorKey: "createdAt",
@@ -80,14 +60,14 @@ export const columns: ColumnDef<Warehouse>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const warehouse = row.original;
+      const unit = row.original;
 
       return (
         <ActionColumn
           row={row}
-          model="warehouse"
-          editEndpoint={`warehouses/update/${warehouse.id}`}
-          id={warehouse.id}
+          model="unit"
+          editEndpoint={`units/update/${unit.id}`}
+          id={unit.id}
         />
       );
     },

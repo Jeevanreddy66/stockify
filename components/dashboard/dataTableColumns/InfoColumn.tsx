@@ -6,7 +6,7 @@ export const InfoColumn: FC<{ row: any; accessorKey: string }> = ({
   row,
   accessorKey,
 }) => {
-  const title = row.getValue(`${accessorKey}`);
+  const text = row.getValue(`${accessorKey}`);
 
-  return <p className="text-md font-normal">{title}</p>;
+  return <p className="text-md font-normal">{text ? text : `--`}</p>;
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Warehouse } from "@prisma/client";
+import type { Supplier } from "@prisma/client";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -14,7 +14,7 @@ import {
   DateColumn,
 } from "@/components/dashboard/dataTableColumns";
 
-export const columns: ColumnDef<Warehouse>[] = [
+export const columns: ColumnDef<Supplier>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -38,9 +38,9 @@ export const columns: ColumnDef<Warehouse>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "logo",
-    header: "Logo",
-    cell: ({ row }) => <ImageColumn row={row} accessorKey="logo" />,
+    accessorKey: "imageUrl",
+    header: "Image",
+    cell: ({ row }) => <ImageColumn row={row} accessorKey="imageUrl" />,
   },
   {
     accessorKey: "name",
@@ -68,9 +68,9 @@ export const columns: ColumnDef<Warehouse>[] = [
     cell: ({ row }) => <InfoColumn row={row} accessorKey="city" />,
   },
   {
-    accessorKey: "country",
-    header: "Country",
-    cell: ({ row }) => <InfoColumn row={row} accessorKey="country" />,
+    accessorKey: "zipCode",
+    header: "Zipcode",
+    cell: ({ row }) => <InfoColumn row={row} accessorKey="zipCode" />,
   },
   {
     accessorKey: "createdAt",
@@ -80,14 +80,14 @@ export const columns: ColumnDef<Warehouse>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const warehouse = row.original;
+      const supplier = row.original;
 
       return (
         <ActionColumn
           row={row}
-          model="warehouse"
-          editEndpoint={`warehouses/update/${warehouse.id}`}
-          id={warehouse.id}
+          model="supplier"
+          editEndpoint={`suppliers/update/${supplier.id}`}
+          id={supplier.id}
         />
       );
     },

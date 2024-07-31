@@ -67,9 +67,10 @@ enum UnitType {
 }
 
 model Unit {
-  id   String   @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  type UnitType
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  shortName String   @unique
+  type      UnitType
 
   // RELATIONS
   products Product[] // One-to-Many relation

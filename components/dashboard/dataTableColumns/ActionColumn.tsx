@@ -6,7 +6,13 @@ import Link from "next/link";
 import { FC } from "react";
 import toast from "react-hot-toast";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
-import { deleteCategory, deleteBrand, deleteWarehouse } from "@/actions";
+import {
+  deleteCategory,
+  deleteBrand,
+  deleteWarehouse,
+  deleteSupplier,
+  deleteUnit,
+} from "@/actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -48,6 +54,12 @@ export const ActionColumn: FC<ActionColumnPropsType> = ({
           break;
         case "warehouse":
           res = await deleteWarehouse(id);
+          break;
+        case "supplier":
+          res = await deleteSupplier(id);
+          break;
+        case "unit":
+          res = await deleteUnit(id);
           break;
         default:
           break;

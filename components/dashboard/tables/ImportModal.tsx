@@ -18,6 +18,8 @@ import {
 import {
   createBulkBrands,
   createBulkCategories,
+  createBulkSuppliers,
+  createBulkUnits,
   createBulkWarehouses,
 } from "@/actions";
 import { formatSize, generateSlug } from "@/lib";
@@ -48,8 +50,12 @@ export const ImportModal: FC<ImportModalPropsType> = ({ model, title }) => {
         return "/brands.xlsx";
       case "warehouse":
         return "/warehouses.xlsx";
+      case "supplier":
+        return "/suppliers.xlsx";
+      case "unit":
+        return "/units.xlsx";
       default:
-        return "";
+        return "#";
     }
   };
 
@@ -173,6 +179,51 @@ export const ImportModal: FC<ImportModalPropsType> = ({ model, title }) => {
                   }
                 );
                 await createBulkWarehouses(reqData);
+                break;
+              case "supplier":
+                reqData = json.map(
+                  ({
+                    ImageUrl = "",
+                    Name,
+                    Company_Name,
+                    VAT_Number = "",
+                    Status = "ACTIVE",
+                    Email,
+                    Phone,
+                    Address,
+                    City,
+                    State = "",
+                    Country = "",
+                    Zipcode,
+                  }: any) => {
+                    return {
+                      name: Name,
+                      slug: generateSlug(Name),
+                      companyName: Company_Name,
+                      vatNumber: String(VAT_Number),
+                      status: Status,
+                      imageUrl: ImageUrl,
+                      email: Email,
+                      phone: String(Phone),
+                      address: Address,
+                      city: City,
+                      state: State,
+                      country: Country,
+                      zipCode: String(Zipcode),
+                    };
+                  }
+                );
+                await createBulkSuppliers(reqData);
+                break;
+              case "unit":
+                reqData = json.map(({ Name, ShortName, Type }: any) => {
+                  return {
+                    name: Name,
+                    shortName: ShortName,
+                    type: Type,
+                  };
+                });
+                await createBulkUnits(reqData);
                 break;
               default:
                 break;

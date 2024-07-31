@@ -1,7 +1,8 @@
 "use client";
 
+import type { Brand } from "@prisma/client";
+
 import { FC, useEffect, useState } from "react";
-import { Brand } from "@prisma/client";
 import { getAllBrands } from "@/actions";
 import { TableHeader } from "@/components/dashboard";
 import { DataTable } from "@/components/dashboard/dataTableComponents";

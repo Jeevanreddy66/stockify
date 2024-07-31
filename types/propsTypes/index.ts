@@ -11,6 +11,8 @@ import { AddCategoryPropsType } from "./AddCategoryProps.type";
 import { AddBrandPropsType } from "./AddBrandProps.type";
 import { ImportModalPropsType } from "./ImportModalProps.type";
 import { AddWarehousePropsType } from "./AddWarehouseProps.type";
+import { AddSupplierPropsType } from "./AddSupplierProps.type";
+import { AddUnitPropsType } from "./AddUnitProps.type";
 
 export type {
   FormInputPropsType,
@@ -26,4 +28,6 @@ export type {
   AddBrandPropsType,
   ImportModalPropsType,
   AddWarehousePropsType,
+  AddSupplierPropsType,
+  AddUnitPropsType,
 };

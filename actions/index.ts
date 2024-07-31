@@ -25,6 +25,24 @@ import {
   deleteWarehouse,
 } from "./warehouse";
 
+import {
+  createSupplier,
+  createBulkSuppliers,
+  getAllSuppliers,
+  getSupplierById,
+  updateSupplierById,
+  deleteSupplier,
+} from "./supplier";
+
+import {
+  createUnit,
+  createBulkUnits,
+  getAllUnits,
+  getUnitById,
+  updateUnitById,
+  deleteUnit,
+} from "./unit";
+
 export {
   createCategory,
   createBulkCategories,
@@ -44,4 +62,16 @@ export {
   getWarehouseById,
   updateWarehouseById,
   deleteWarehouse,
+  createSupplier,
+  createBulkSuppliers,
+  getAllSuppliers,
+  getSupplierById,
+  updateSupplierById,
+  deleteSupplier,
+  createUnit,
+  createBulkUnits,
+  getAllUnits,
+  getUnitById,
+  updateUnitById,
+  deleteUnit,
 };
