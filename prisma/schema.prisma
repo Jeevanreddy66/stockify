@@ -152,7 +152,7 @@ enum ProductStatus {
 model Product {
   id           String           @id @default(auto()) @map("_id") @db.ObjectId
   title        String
-  productCode  Int              @unique
+  productCode  String           @unique
   details      String
   productCost  Float
   productPrice Float
@@ -205,3 +205,20 @@ model SupplierProduct {
 // Unit --> One to Many -- One Unit can exists for many products
 // Warehouse --> Many to Many -- Warehouse can have many products & Same Product can be available in many warehouses
 // Supplier --> Many to Many -- Supplier can supply many products & Same Product can be supplied by many suppliers
+
+enum BannerStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  PENDING
+}
+
+model Banner {
+  id         String       @id @default(auto()) @map("_id") @db.ObjectId
+  imageUrl   String
+  bannerLink String
+  status     BannerStatus @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

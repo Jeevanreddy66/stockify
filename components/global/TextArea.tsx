@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import type { TextAreaPropsType } from "@/types";
 
 import { FC } from "react";
+import { cn } from "@/lib";
 
 export const TextArea: FC<TextAreaPropsType> = ({
   register,

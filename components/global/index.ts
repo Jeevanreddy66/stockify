@@ -5,6 +5,9 @@ import { TextInput } from "./TextInput";
 import { TextArea } from "./TextArea";
 import { SubmitButton } from "./SubmitButton";
 import { ImageUpload } from "./ImageUpload";
+import { AddNewButton } from "./AddNewButton";
+import { FormSelect } from "./FormSelect";
+import { MultipleImageUpload } from "./MultipleImageUpload";
 
 export {
   ThemeToggle,
@@ -14,4 +17,7 @@ export {
   TextArea,
   SubmitButton,
   ImageUpload,
+  AddNewButton,
+  FormSelect,
+  MultipleImageUpload,
 };

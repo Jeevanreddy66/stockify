@@ -15,6 +15,7 @@ import {
   AddWarehouseFormType,
   AddSupplierFormType,
   AddUnitFormType,
+  AddProductFormType,
 } from "./formTypes";
 
 // Import Global Types
@@ -32,6 +33,7 @@ import {
   TextAreaPropsType,
   SubmitButtonPropsType,
   ImageUploadPropsType,
+  MultipleImageUploadPropsType,
   TableHeaderPropsType,
   ActionColumnPropsType,
   SearchFilterPropsType,
@@ -41,6 +43,11 @@ import {
   AddWarehousePropsType,
   AddSupplierPropsType,
   AddUnitPropsType,
+  AddProductPropsType,
+  AddNewButtonPropsType,
+  FormSelectPropsType,
+  FormOptionsDataType,
+  InitialFormDataType,
 } from "./propsTypes";
 
 // Export Data Types
@@ -60,6 +67,7 @@ export type {
   AddWarehouseFormType,
   AddSupplierFormType,
   AddUnitFormType,
+  AddProductFormType,
 };
 
 // Export Global Types
@@ -73,6 +81,7 @@ export type {
   TextAreaPropsType,
   SubmitButtonPropsType,
   ImageUploadPropsType,
+  MultipleImageUploadPropsType,
   TableHeaderPropsType,
   ActionColumnPropsType,
   SearchFilterPropsType,
@@ -82,4 +91,9 @@ export type {
   AddWarehousePropsType,
   AddSupplierPropsType,
   AddUnitPropsType,
+  AddProductPropsType,
+  AddNewButtonPropsType,
+  FormSelectPropsType,
+  FormOptionsDataType,
+  InitialFormDataType,
 };

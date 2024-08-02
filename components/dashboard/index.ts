@@ -18,6 +18,7 @@ import {
   AddWarehouse,
   AddSupplier,
   AddUnit,
+  AddProduct,
 } from "./forms";
 
 // Menu Imports
@@ -40,6 +41,7 @@ export {
   AddWarehouse,
   AddSupplier,
   AddUnit,
+  AddProduct,
 };
 
 // Menu Exports

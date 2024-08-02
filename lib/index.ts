@@ -6,6 +6,7 @@ import { formatDateTime } from "./formatDateTime";
 import { formatSize } from "./formatSize";
 import { convertDataToExcel } from "./exportToExcel";
 import { formatFilename } from "./formatFileName";
+import { generateBarcode } from "./generateBarcode";
 
 export {
   cn,
@@ -17,4 +18,5 @@ export {
   formatSize,
   convertDataToExcel,
   formatFilename,
+  generateBarcode,
 };

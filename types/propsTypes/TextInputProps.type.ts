@@ -5,4 +5,6 @@ export type TextInputPropsType = {
   type?: string;
   name: string;
   required?: boolean;
+  tooltipText?: string;
+  unit?: string;
 };

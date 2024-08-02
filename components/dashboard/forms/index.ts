@@ -4,6 +4,7 @@ import { AddBrand } from "./AddBrand";
 import { AddWarehouse } from "./AddWarehouse";
 import { AddSupplier } from "./AddSupplier";
 import { AddUnit } from "./AddUnit";
+import { AddProduct } from "./AddProduct";
 
 export {
   FormHeader,
@@ -12,4 +13,5 @@ export {
   AddWarehouse,
   AddSupplier,
   AddUnit,
+  AddProduct,
 };

@@ -6,3 +6,10 @@ export type ImageUploadPropsType = {
   setImageUrl: (imageUrl: string) => void;
   endpoint: keyof typeof ourFileRouter;
 };
+
+export type MultipleImageUploadPropsType = {
+  label: string;
+  images: string[];
+  setImages: (images: string[]) => void;
+  endpoint: keyof typeof ourFileRouter;
+};
