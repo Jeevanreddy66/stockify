@@ -15,6 +15,7 @@ export const FormSelect: FC<FormSelectPropsType> = ({
   isMultiple = false,
   href = "#",
   tooltipText = "",
+  isEdit,
 }) => {
   const handleValueChange = (option: SelectValue): void => setValue(option);
 
@@ -32,6 +33,7 @@ export const FormSelect: FC<FormSelectPropsType> = ({
           options={options}
           isSearchable
           isMultiple={isMultiple}
+          isDisabled={isEdit}
           placeholder={`Select ${label}`}
         />
 

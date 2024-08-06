@@ -1,12 +1,12 @@
 import type {
   Brand,
   Category,
-  Product,
   Supplier,
   Unit,
   Warehouse,
 } from "@prisma/client";
 import type { SelectOptionsType } from "../globalTypes";
+import { ProductWithRelations } from "../dataTypes";
 
 export type FormOptionsDataType = {
   categoriesOptions: SelectOptionsType[];
@@ -26,6 +26,6 @@ export type InitialFormDataType = {
 
 export type AddProductPropsType = {
   isEdit?: boolean;
-  initialData?: Product;
+  initialData?: ProductWithRelations | null;
   formOptionsData: FormOptionsDataType;
 };

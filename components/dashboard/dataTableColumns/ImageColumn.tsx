@@ -12,7 +12,9 @@ export const ImageColumn: FC<{
 
   return (
     <Image
-      src={imageUrl || placeholderImage}
+      src={
+        typeof imageUrl == "string" ? imageUrl : imageUrl[0] || placeholderImage
+      }
       width="64"
       height="64"
       alt={`${accessorKey}`}

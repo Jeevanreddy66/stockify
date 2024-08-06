@@ -43,6 +43,15 @@ import {
   deleteUnit,
 } from "./unit";
 
+import {
+  createProduct,
+  createBulkProducts,
+  getAllProducts,
+  getProductById,
+  updateProductById,
+  deleteProduct,
+} from "./product";
+
 export {
   createCategory,
   createBulkCategories,
@@ -74,4 +83,10 @@ export {
   getUnitById,
   updateUnitById,
   deleteUnit,
+  createProduct,
+  createBulkProducts,
+  getAllProducts,
+  getProductById,
+  updateProductById,
+  deleteProduct,
 };

@@ -8,6 +8,7 @@ import { ImageUpload } from "./ImageUpload";
 import { AddNewButton } from "./AddNewButton";
 import { FormSelect } from "./FormSelect";
 import { MultipleImageUpload } from "./MultipleImageUpload";
+import { GenerateBarcode } from "./GenerateBarcode";
 
 export {
   ThemeToggle,
@@ -20,4 +21,5 @@ export {
   AddNewButton,
   FormSelect,
   MultipleImageUpload,
+  GenerateBarcode,
 };

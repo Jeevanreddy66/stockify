@@ -8,4 +8,5 @@ export type FormSelectPropsType = {
   isMultiple?: boolean;
   href?: string;
   tooltipText?: string;
+  isEdit?: boolean;
 };

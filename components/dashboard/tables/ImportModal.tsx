@@ -18,6 +18,7 @@ import {
 import {
   createBulkBrands,
   createBulkCategories,
+  createBulkProducts,
   createBulkSuppliers,
   createBulkUnits,
   createBulkWarehouses,
@@ -54,6 +55,8 @@ export const ImportModal: FC<ImportModalPropsType> = ({ model, title }) => {
         return "/suppliers.xlsx";
       case "unit":
         return "/units.xlsx";
+      case "product":
+        return "/products.xlsx";
       default:
         return "#";
     }
@@ -224,6 +227,75 @@ export const ImportModal: FC<ImportModalPropsType> = ({ model, title }) => {
                   };
                 });
                 await createBulkUnits(reqData);
+                break;
+              case "product":
+                // Process each row
+                const processedData: any = json.map((row: any) => {
+                  if (row.Images) {
+                    row.Images = row.Images.split(",").map((item: any) =>
+                      item.trim()
+                    );
+                  }
+                  if (row.Warehouse_Id) {
+                    row.Warehouse_Id = row.Warehouse_Id.split(",").map(
+                      (item: any) => item.trim()
+                    );
+                  }
+                  if (row.Supplier_Id) {
+                    row.Supplier_Id = row.Supplier_Id.split(",").map(
+                      (item: any) => item.trim()
+                    );
+                  }
+
+                  return row;
+                });
+
+                reqData = processedData.map(
+                  ({
+                    Title,
+                    Barcode_Type,
+                    Product_Code,
+                    Details = "",
+                    Product_Cost,
+                    Product_Price,
+                    Alert_Qty,
+                    Product_Tax,
+                    Stock_Qty,
+                    Status = "AVAILABLE",
+                    Tax_Method,
+                    Images = [""],
+                    Category_Id,
+                    Brand_Id,
+                    Unit_Id,
+                    Warehouse_Id,
+                    Supplier_Id,
+                  }: any) => {
+                    return {
+                      title: Title,
+                      barcodeType: Barcode_Type,
+                      productCode: String(Product_Code),
+                      details: Details,
+                      productCost: Number(Product_Cost),
+                      productPrice: Number(Product_Price),
+                      alertQty: Number(Alert_Qty),
+                      stockQty: Number(Stock_Qty),
+                      productTax: Number(Product_Tax),
+                      status: Status,
+                      taxMethod: Tax_Method,
+                      images: Images,
+                      categoryId: Category_Id,
+                      brandId: Brand_Id,
+                      unitId: Unit_Id,
+                      warehouses: Warehouse_Id.map((value: string) => {
+                        return { warehouseId: value };
+                      }),
+                      suppliers: Supplier_Id.map((value: string) => {
+                        return { supplierId: value };
+                      }),
+                    };
+                  }
+                );
+                await createBulkProducts(reqData);
                 break;
               default:
                 break;

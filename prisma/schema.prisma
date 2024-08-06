@@ -149,9 +149,19 @@ enum ProductStatus {
   FEATURED
 }
 
+enum BarcodeType {
+  CODE128
+  EAN13
+  UPC
+  ITF14
+  EAN8
+  CODE39
+}
+
 model Product {
   id           String           @id @default(auto()) @map("_id") @db.ObjectId
   title        String
+  barcodeType  BarcodeType      @default(CODE128)
   productCode  String           @unique
   details      String
   productCost  Float

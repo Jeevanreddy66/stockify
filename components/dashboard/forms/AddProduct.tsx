@@ -3,53 +3,31 @@
 import type {
   AddProductFormType,
   AddProductPropsType,
-  SelectOptionsType,
+  ProductDataType,
 } from "@/types";
 
 import { useRouter } from "next/navigation";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { RefreshCcw } from "lucide-react";
-import JsBarcode from "jsbarcode";
-import placholderImage from "@/public/placeholder.svg";
-import { generateBarcode } from "@/lib";
-import { Button } from "@/components/ui/button";
+import { toast } from "react-hot-toast";
+import placeholderImage from "@/public/placeholder.svg";
+import { createProduct, updateProductById } from "@/actions";
+import { taxMethodOptions, statusOptions, barcodeTypeOptions } from "@/config";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   FormSelect,
-  ImageUpload,
+  GenerateBarcode,
   MultipleImageUpload,
   TextArea,
   TextInput,
 } from "@/components/global";
 import { FormHeader } from "./FormHeader";
-import Image from "next/image";
 
 export const AddProduct: FC<AddProductPropsType> = ({
   isEdit = false,
   initialData,
   formOptionsData,
 }) => {
-  const taxMethodOptions: SelectOptionsType[] = [
-    { value: "INCLUSIVE", label: "Inclusive" },
-    { value: "EXCLUSIVE", label: "Exclusive" },
-  ];
-
-  const statusOptions: SelectOptionsType[] = [
-    { value: "AVAILABLE", label: "Available" },
-    { value: "FEATURED", label: "Featured" },
-    { value: "PENDING", label: "Pending" },
-    { value: "OUT_OF_STOCK", label: "Out of Stock" },
-    { value: "DISCONTINUED", label: "Discontinued" },
-  ];
-
-  const barcodeTypeOptions: SelectOptionsType[] = [
-    { value: "CODE128", label: "CODE128" },
-    { value: "EAN13", label: "EAN13" },
-    { value: "UPC", label: "UPC" },
-    { value: "ITF14", label: "ITF14" },
-  ];
-
   const {
     brandsOptions,
     categoriesOptions,
@@ -58,10 +36,21 @@ export const AddProduct: FC<AddProductPropsType> = ({
     unitsOptions,
   } = formOptionsData;
 
+  const [formData, setFormData] = useState<AddProductFormType>({
+    title: "",
+    details: "",
+    productCost: 0,
+    productPrice: 0,
+    stockQty: 1,
+    alertQty: 1,
+    productTax: 0,
+  });
+
   const [brandValue, setBrandValue] = useState<any>(null);
   const [categoryValue, setCategoryValue] = useState<any>(null);
   const [supplierValue, setSupplierValue] = useState<any>(null);
   const [warehouseValue, setWarehouseValue] = useState<any>(null);
+  const [unitValue, setUnitValue] = useState<any>(null);
   const [taxMethod, setTaxMethod] = useState<any>(null);
 
   const [statusValue, setStatusValue] = useState<any>(null);
@@ -70,7 +59,7 @@ export const AddProduct: FC<AddProductPropsType> = ({
   const [barcodeValue, setBarcodeValue] = useState<string>("");
 
   const [productImages, setProductImages] = useState<string[]>(
-    new Array(4).fill(placholderImage)
+    new Array(4).fill(placeholderImage)
   );
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -82,20 +71,196 @@ export const AddProduct: FC<AddProductPropsType> = ({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<AddProductFormType>({ defaultValues: {} });
+  } = useForm<AddProductFormType>({ defaultValues: formData });
 
   const handleBack = (): void => router.back();
 
-  const handleGenerateBarcode = (): void => {
-    const canvas = document.createElement("canvas");
-    JsBarcode(canvas, generateBarcode(), {
-      format: barcodeType.value,
-    });
-    const barcode = canvas.toDataURL("image/png");
-    setBarcodeValue(generateBarcode());
+  const saveProduct = async (data: AddProductFormType): Promise<void> => {
+    try {
+      setLoading(true);
+
+      const {
+        title,
+        details,
+        productCost,
+        productPrice,
+        stockQty,
+        alertQty,
+        productTax,
+      } = data;
+
+      const productData: ProductDataType = {
+        title,
+        barcodeType: barcodeType.value,
+        productCode: barcodeValue,
+        details,
+        productCost: Number(productCost),
+        productPrice: Number(productPrice),
+        alertQty: Number(alertQty),
+        stockQty: Number(stockQty),
+        productTax: Number(productTax),
+        status: statusValue.value,
+        taxMethod: taxMethod.value,
+        images: productImages.filter((item) => typeof item === "string"),
+        categoryId: categoryValue.value,
+        brandId: brandValue.value,
+        unitId: unitValue.value,
+        warehouses: warehouseValue.map(({ value }: any) => {
+          return { warehouseId: value };
+        }),
+        suppliers: supplierValue.map(({ value }: any) => {
+          return { supplierId: value };
+        }),
+      };
+
+      if (isEdit) {
+        const response: any = await updateProductById(
+          initialData?.id!,
+          productData
+        );
+        toast.success("Product Updated Successfully!👍");
+      } else {
+        const res = await createProduct(productData);
+
+        if (res.error)
+          // Send Success Toast Message
+          toast.error(res.error);
+        else toast.success("Product Created Successfully!👍");
+      }
+
+      setLoading(false);
+
+      // Reset Form Data
+      reset();
+      setStatusValue(null);
+      setProductImages(new Array(4).fill(placeholderImage));
+
+      // Route back to categories page
+      router.push("/dashboard/products");
+    } catch (error: any) {
+      console.log(`Error is: ${error.message}`);
+      toast.error("⚠️ Please enter all the fields!");
+      setLoading(false);
+
+      toast.error(`Error Occured : ${error.message}`);
+    }
   };
 
-  const saveProduct = async (data: AddProductFormType): Promise<void> => {};
+  useEffect(() => {
+    reset(formData);
+
+    if (initialData) {
+      setFormData({
+        title: initialData.title,
+        details: initialData.details,
+        productCost: initialData.productCost,
+        productPrice: initialData.productPrice,
+        stockQty: initialData.stockQty,
+        alertQty: initialData.alertQty,
+        productTax: initialData.productTax,
+      });
+
+      setBrandValue({
+        value: initialData.brandId,
+        label: brandsOptions.find(({ value }) => value === initialData.brandId)
+          ?.label,
+      });
+
+      setCategoryValue({
+        value: initialData.categoryId,
+        label: categoriesOptions.find(
+          ({ value }) => value === initialData.categoryId
+        )?.label,
+      });
+
+      setUnitValue({
+        value: initialData.unitId,
+        label: unitsOptions.find(({ value }) => value === initialData.unitId)
+          ?.label,
+      });
+
+      setWarehouseValue(
+        initialData.warehouses.map((warehouse: any) => {
+          const warehouseOption = warehousesOptions.find(
+            ({ value }) => value === warehouse.warehouseId
+          );
+          return {
+            value: warehouseOption?.value,
+            label: warehouseOption?.label,
+          };
+        })
+      );
+
+      setSupplierValue(
+        initialData.suppliers.map((supplier: any) => {
+          const supplierOption = suppliersOptions.find(
+            ({ value }) => value === supplier.supplierId
+          );
+          return {
+            value: supplierOption?.value,
+            label: supplierOption?.label,
+          };
+        })
+      );
+
+      setTaxMethod(
+        initialData
+          ? {
+              value: initialData.taxMethod,
+              label:
+                initialData.taxMethod.charAt(0).toUpperCase() +
+                initialData.taxMethod.slice(1).toLowerCase(),
+            }
+          : null
+      );
+
+      setStatusValue(() => {
+        return initialData
+          ? {
+              value: initialData.status,
+              label:
+                initialData.status.charAt(0).toUpperCase() +
+                initialData.status.slice(1).toLowerCase(),
+            }
+          : null;
+      });
+
+      setBarcodeType({
+        value: initialData.barcodeType,
+        label: initialData.barcodeType,
+      });
+
+      setBarcodeValue(initialData.productCode);
+
+      const filledImages = new Array(4)
+        .fill(placeholderImage)
+        .map((_, i) => initialData.images[i] || placeholderImage);
+
+      setProductImages(filledImages);
+    } else {
+      setBrandValue(null);
+      setCategoryValue(null);
+      setUnitValue(null);
+      setWarehouseValue(null);
+      setWarehouseValue(null);
+      setSupplierValue(null);
+      setTaxMethod(null);
+      setStatusValue(null);
+      setBarcodeType(barcodeTypeOptions[0]);
+      setBarcodeValue("");
+      setProductImages(new Array(4).fill(placeholderImage));
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    initialData,
+    reset,
+    brandsOptions,
+    categoriesOptions,
+    warehousesOptions,
+    suppliersOptions,
+    unitsOptions,
+  ]);
 
   return (
     <form onSubmit={handleSubmit(saveProduct)}>
@@ -173,8 +338,8 @@ export const AddProduct: FC<AddProductPropsType> = ({
 
               <FormSelect
                 label="Unit"
-                value={warehouseValue}
-                setValue={setWarehouseValue}
+                value={unitValue}
+                setValue={setUnitValue}
                 options={unitsOptions}
                 href="/dashboard/units/new"
                 tooltipText="New Unit"
@@ -247,30 +412,13 @@ export const AddProduct: FC<AddProductPropsType> = ({
 
           <Card className="w-full h-fit">
             <CardContent className="mt-3">
-              <FormSelect
-                label="Barcode Symbology"
-                value={barcodeType}
-                setValue={setBarcodeType}
-                options={barcodeTypeOptions}
+              <GenerateBarcode
+                isEdit={isEdit}
+                barcodeType={barcodeType}
+                setBarcodeType={setBarcodeType}
+                barcodeValue={barcodeValue}
+                setBarcodeValue={setBarcodeValue}
               />
-
-              <div className="mt-4 w-full flex items-center gap-2 flex-nowrap">
-                <input
-                  type="text"
-                  value={barcodeValue}
-                  placeholder="Generated Barcode"
-                  readOnly
-                  className="block w-full rounded-md border-0 px-3 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="icon"
-                  onClick={handleGenerateBarcode}
-                >
-                  <RefreshCcw className="w-4 h-4" />
-                </Button>
-              </div>
             </CardContent>
           </Card>
 

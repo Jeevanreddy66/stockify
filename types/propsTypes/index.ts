@@ -23,6 +23,7 @@ import {
 } from "./AddProductProps.type";
 import { AddNewButtonPropsType } from "./AddNewButtonProps.type";
 import { FormSelectPropsType } from "./FormSelectProps.type";
+import { GenerateBarcodePropsType } from "./GenerateBarcodeProps.type";
 
 export type {
   FormInputPropsType,
@@ -46,4 +47,5 @@ export type {
   FormSelectPropsType,
   FormOptionsDataType,
   InitialFormDataType,
+  GenerateBarcodePropsType,
 };

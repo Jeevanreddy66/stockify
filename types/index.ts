@@ -6,6 +6,8 @@ import {
   WarehouseDataType,
   SupplierDataType,
   UnitDataType,
+  ProductDataType,
+  ProductWithRelations,
 } from "./dataTypes";
 
 // Import Form Types
@@ -48,6 +50,7 @@ import {
   FormSelectPropsType,
   FormOptionsDataType,
   InitialFormDataType,
+  GenerateBarcodePropsType,
 } from "./propsTypes";
 
 // Export Data Types
@@ -58,6 +61,8 @@ export type {
   WarehouseDataType,
   SupplierDataType,
   UnitDataType,
+  ProductDataType,
+  ProductWithRelations,
 };
 
 // Export Form Types
@@ -96,4 +101,5 @@ export type {
   FormSelectPropsType,
   FormOptionsDataType,
   InitialFormDataType,
+  GenerateBarcodePropsType,
 };
