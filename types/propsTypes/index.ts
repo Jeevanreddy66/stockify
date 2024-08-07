@@ -1,8 +1,10 @@
 import { FormInputPropsType } from "./FormInputProps.type";
+import { FormFooterPropsType } from "./FormFooterProps.type";
 import { FormHeaderPropsType } from "./FormHeaderProps.type";
 import { TextInputPropsType } from "./TextInputProps.type";
 import { TextAreaPropsType } from "./TextAreaProps.type";
 import { SubmitButtonPropsType } from "./SubmitButtonProps.type";
+import { CloseButtonPropsType } from "./CloseButtonProps.type";
 import {
   ImageUploadPropsType,
   MultipleImageUploadPropsType,
@@ -27,10 +29,12 @@ import { GenerateBarcodePropsType } from "./GenerateBarcodeProps.type";
 
 export type {
   FormInputPropsType,
+  FormFooterPropsType,
   FormHeaderPropsType,
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  CloseButtonPropsType,
   ImageUploadPropsType,
   MultipleImageUploadPropsType,
   TableHeaderPropsType,

@@ -146,7 +146,6 @@ enum ProductStatus {
   OUT_OF_STOCK
   DISCONTINUED
   PENDING
-  FEATURED
 }
 
 enum BarcodeType {
@@ -172,6 +171,9 @@ model Product {
   status       ProductStatus    @default(AVAILABLE)
   taxMethod    ProductTaxMethod @default(INCLUSIVE)
   images       String[]
+  expiryDate   DateTime
+  batchNumber  String
+  isFeatured   Boolean          @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

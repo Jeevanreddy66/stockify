@@ -26,6 +26,9 @@ export type ProductDataType = {
   status: ProductStatus;
   taxMethod: ProductTaxMethod;
   images: string[];
+  expiryDate: string;
+  batchNumber: string;
+  isFeatured: boolean;
   categoryId: string;
   brandId: string;
   unitId: string;

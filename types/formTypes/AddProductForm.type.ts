@@ -6,4 +6,7 @@ export type AddProductFormType = {
   stockQty: number;
   alertQty: number;
   productTax: number;
+  expiryDate: string;
+  batchNumber: string;
+  isFeatured: boolean;
 };

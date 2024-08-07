@@ -1,3 +1,4 @@
+import { FormFooter } from "./FormFooter";
 import { FormHeader } from "./FormHeader";
 import { AddCategory } from "./AddCategory";
 import { AddBrand } from "./AddBrand";
@@ -7,6 +8,7 @@ import { AddUnit } from "./AddUnit";
 import { AddProduct } from "./AddProduct";
 
 export {
+  FormFooter,
   FormHeader,
   AddCategory,
   AddBrand,

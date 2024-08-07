@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import placeholderImage from "@/public/placeholder.svg";
 import { createProduct, updateProductById } from "@/actions";
 import { taxMethodOptions, statusOptions, barcodeTypeOptions } from "@/config";
+import { convertDateToISO } from "@/lib";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   FormSelect,
@@ -22,6 +23,7 @@ import {
   TextInput,
 } from "@/components/global";
 import { FormHeader } from "./FormHeader";
+import { FormFooter } from "./FormFooter";
 
 export const AddProduct: FC<AddProductPropsType> = ({
   isEdit = false,
@@ -44,6 +46,9 @@ export const AddProduct: FC<AddProductPropsType> = ({
     stockQty: 1,
     alertQty: 1,
     productTax: 0,
+    expiryDate: Date.now().toString(),
+    batchNumber: "",
+    isFeatured: false,
   });
 
   const [brandValue, setBrandValue] = useState<any>(null);
@@ -87,6 +92,9 @@ export const AddProduct: FC<AddProductPropsType> = ({
         stockQty,
         alertQty,
         productTax,
+        expiryDate,
+        batchNumber,
+        isFeatured,
       } = data;
 
       const productData: ProductDataType = {
@@ -102,6 +110,9 @@ export const AddProduct: FC<AddProductPropsType> = ({
         status: statusValue.value,
         taxMethod: taxMethod.value,
         images: productImages.filter((item) => typeof item === "string"),
+        expiryDate: convertDateToISO(expiryDate),
+        batchNumber,
+        isFeatured,
         categoryId: categoryValue.value,
         brandId: brandValue.value,
         unitId: unitValue.value,
@@ -158,6 +169,11 @@ export const AddProduct: FC<AddProductPropsType> = ({
         stockQty: initialData.stockQty,
         alertQty: initialData.alertQty,
         productTax: initialData.productTax,
+        expiryDate: new Date(initialData?.expiryDate)
+          .toISOString()
+          .split("T")[0],
+        batchNumber: initialData.batchNumber,
+        isFeatured: initialData.isFeatured,
       });
 
       setBrandValue({
@@ -267,6 +283,7 @@ export const AddProduct: FC<AddProductPropsType> = ({
       <FormHeader
         title="Product"
         goBack={handleBack}
+        href="/products"
         loading={loading}
         isEdit={isEdit}
       />
@@ -394,19 +411,55 @@ export const AddProduct: FC<AddProductPropsType> = ({
                 setValue={setTaxMethod}
                 options={taxMethodOptions}
               />
+
+              <TextInput
+                register={register}
+                errors={errors}
+                label="Expiry Date"
+                name="expiryDate"
+                type="date"
+                required
+              />
+
+              <TextInput
+                register={register}
+                errors={errors}
+                label="Batch Number"
+                name="batchNumber"
+                required
+              />
             </CardContent>
           </Card>
         </div>
 
         <div className="col-span-full lg:col-span-4 grid md:grid-cols-2 lg:grid-cols-1 gap-6">
           <Card className="w-full h-fit">
-            <CardContent className="mt-3">
+            <CardContent className="mt-3 space-y-3">
               <FormSelect
                 label="Status"
                 value={statusValue}
                 setValue={setStatusValue}
                 options={statusOptions}
               />
+
+              <div className="flex items-center gap-3">
+                <input
+                  {...register("isFeatured")}
+                  type="checkbox"
+                  name="isFeatured"
+                  id="isFeatured"
+                  className="h-4 w-4 text-indigo-600 rounded focus:ring-0"
+                />
+
+                <div className="flex flex-col justify-start">
+                  <label htmlFor="isFeatured" className="text-sm font-medium">
+                    Featured
+                  </label>
+                  <p className="text-xs text-thin text-muted-foreground italic">
+                    Featured products will be shown in POS.
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
@@ -447,6 +500,13 @@ export const AddProduct: FC<AddProductPropsType> = ({
           </Card>
         </div>
       </div>
+
+      <FormFooter
+        isEdit={isEdit}
+        loading={loading}
+        href="/products"
+        title="Product"
+      />
     </form>
   );
 };

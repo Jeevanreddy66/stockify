@@ -12,6 +12,7 @@ import { BarChart } from "./charts";
 
 // Forms Imports
 import {
+  FormFooter,
   FormHeader,
   AddCategory,
   AddBrand,
@@ -35,6 +36,7 @@ export { BarChart };
 
 // Forms Exports
 export {
+  FormFooter,
   FormHeader,
   AddCategory,
   AddBrand,

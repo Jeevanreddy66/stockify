@@ -30,10 +30,12 @@ import {
 // Import Props Types
 import {
   FormInputPropsType,
+  FormFooterPropsType,
   FormHeaderPropsType,
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  CloseButtonPropsType,
   ImageUploadPropsType,
   MultipleImageUploadPropsType,
   TableHeaderPropsType,
@@ -81,10 +83,12 @@ export type { FooterConfigType, SidebarConfigType, SelectOptionsType };
 // Export Props Types
 export type {
   FormInputPropsType,
+  FormFooterPropsType,
   FormHeaderPropsType,
   TextInputPropsType,
   TextAreaPropsType,
   SubmitButtonPropsType,
+  CloseButtonPropsType,
   ImageUploadPropsType,
   MultipleImageUploadPropsType,
   TableHeaderPropsType,

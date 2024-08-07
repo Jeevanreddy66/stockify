@@ -132,6 +132,7 @@ export const AddBrand: FC<AddBrandPropsType> = ({
       <FormHeader
         title="Brand"
         goBack={handleBack}
+        href="/brands"
         loading={loading}
         isEdit={isEdit}
       />

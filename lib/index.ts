@@ -7,6 +7,7 @@ import { formatSize } from "./formatSize";
 import { convertDataToExcel } from "./exportToExcel";
 import { formatFilename } from "./formatFileName";
 import { generateBarcode } from "./generateBarcode";
+import { convertDateToISO } from "./convertDateToISO";
 
 export {
   cn,
@@ -19,4 +20,5 @@ export {
   convertDataToExcel,
   formatFilename,
   generateBarcode,
+  convertDateToISO,
 };

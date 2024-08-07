@@ -15,7 +15,6 @@ import { toast } from "react-hot-toast";
 import { generateSlug } from "@/lib";
 import { createSupplier, updateSupplierById } from "@/actions";
 import placeholderImage from "@/public/placeholder.svg";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,6 +25,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { ImageUpload, TextArea, TextInput } from "@/components/global";
 import { FormHeader } from "./FormHeader";
+import { FormFooter } from "./FormFooter";
 
 export const AddSupplier: FC<AddSupplierPropsType> = ({
   isEdit = false,
@@ -151,6 +151,7 @@ export const AddSupplier: FC<AddSupplierPropsType> = ({
       <FormHeader
         title="Supplier"
         goBack={handleBack}
+        href="/suppliers"
         loading={loading}
         isEdit={isEdit}
       />
@@ -289,20 +290,12 @@ export const AddSupplier: FC<AddSupplierPropsType> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-4 lg:hidden">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={handleBack}
-          disabled={loading}
-        >
-          Discard
-        </Button>
-        <Button type="submit" size="sm" disabled={loading}>
-          {isEdit ? "Update" : "Save"} Category
-        </Button>
-      </div>
+      <FormFooter
+        isEdit={isEdit}
+        loading={loading}
+        href="/suppliers"
+        title="Supplier"
+      />
     </form>
   );
 };

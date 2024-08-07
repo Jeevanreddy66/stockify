@@ -4,6 +4,7 @@ import { FormInput } from "./FormInput";
 import { TextInput } from "./TextInput";
 import { TextArea } from "./TextArea";
 import { SubmitButton } from "./SubmitButton";
+import { CloseButton } from "./CloseButton";
 import { ImageUpload } from "./ImageUpload";
 import { AddNewButton } from "./AddNewButton";
 import { FormSelect } from "./FormSelect";
@@ -17,6 +18,7 @@ export {
   TextInput,
   TextArea,
   SubmitButton,
+  CloseButton,
   ImageUpload,
   AddNewButton,
   FormSelect,

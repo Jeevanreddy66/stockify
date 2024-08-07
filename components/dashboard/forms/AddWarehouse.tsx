@@ -15,7 +15,6 @@ import { toast } from "react-hot-toast";
 import { generateSlug } from "@/lib";
 import { createWarehouse, updateWarehouseById } from "@/actions";
 import placeholderImage from "@/public/placeholder.svg";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,6 +25,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { ImageUpload, TextInput } from "@/components/global";
 import { FormHeader } from "./FormHeader";
+import { FormFooter } from "./FormFooter";
 
 export const AddWarehouse: FC<AddWarehousePropsType> = ({
   isEdit = false,
@@ -145,6 +145,7 @@ export const AddWarehouse: FC<AddWarehousePropsType> = ({
       <FormHeader
         title="Warehouse"
         goBack={handleBack}
+        href="/warehouses"
         loading={loading}
         isEdit={isEdit}
       />
@@ -255,20 +256,12 @@ export const AddWarehouse: FC<AddWarehousePropsType> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-4 lg:hidden">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={handleBack}
-          disabled={loading}
-        >
-          Discard
-        </Button>
-        <Button type="submit" size="sm" disabled={loading}>
-          {isEdit ? "Update" : "Save"} Category
-        </Button>
-      </div>
+      <FormFooter
+        isEdit={isEdit}
+        loading={loading}
+        href="/warehouses"
+        title="Warehouse"
+      />
     </form>
   );
 };

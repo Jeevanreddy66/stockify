@@ -120,6 +120,7 @@ export const AddUnit: FC<AddUnitPropsType> = ({
       <FormHeader
         title="Unit"
         goBack={handleBack}
+        href="/units"
         loading={loading}
         isEdit={isEdit}
       />

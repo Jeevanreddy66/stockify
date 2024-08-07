@@ -15,7 +15,6 @@ import { toast } from "react-hot-toast";
 import placeholderImage from "@/public/placeholder.svg";
 import { generateSlug } from "@/lib";
 import { createCategory, updateCategoryById } from "@/actions";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,6 +25,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { ImageUpload, TextArea, TextInput } from "@/components/global";
 import { FormHeader } from "./FormHeader";
+import { FormFooter } from "./FormFooter";
 
 export const AddCategory: FC<AddCategoryPropsType> = ({
   isEdit = false,
@@ -136,6 +136,7 @@ export const AddCategory: FC<AddCategoryPropsType> = ({
       <FormHeader
         title="Category"
         goBack={handleBack}
+        href="/categories"
         loading={loading}
         isEdit={isEdit}
       />
@@ -204,20 +205,12 @@ export const AddCategory: FC<AddCategoryPropsType> = ({
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-4 lg:hidden">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={handleBack}
-          disabled={loading}
-        >
-          Discard
-        </Button>
-        <Button type="submit" size="sm" disabled={loading}>
-          {isEdit ? "Update" : "Save"} Category
-        </Button>
-      </div>
+      <FormFooter
+        isEdit={isEdit}
+        loading={loading}
+        href="/categories"
+        title="Category"
+      />
     </form>
   );
 };

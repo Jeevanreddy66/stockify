@@ -5,11 +5,12 @@ import type { FormHeaderPropsType } from "@/types";
 import { FC } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SubmitButton } from "@/components/global";
+import { CloseButton, SubmitButton } from "@/components/global";
 
 export const FormHeader: FC<FormHeaderPropsType> = ({
   title,
   goBack,
+  href,
   loading,
   isEdit,
 }) => {
@@ -32,16 +33,7 @@ export const FormHeader: FC<FormHeaderPropsType> = ({
       </h2>
 
       <div className="ml-auto flex items-center gap-4">
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={goBack}
-          disabled={loading}
-        >
-          Discard
-        </Button>
-
+        <CloseButton href={href} loading={loading} />
         <SubmitButton title={title} loading={loading} isEdit={isEdit} />
       </div>
     </div>

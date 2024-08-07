@@ -7,7 +7,6 @@ export const taxMethodOptions: SelectOptionsType[] = [
 
 export const statusOptions: SelectOptionsType[] = [
   { value: "AVAILABLE", label: "Available" },
-  { value: "FEATURED", label: "Featured" },
   { value: "PENDING", label: "Pending" },
   { value: "OUT_OF_STOCK", label: "Out of Stock" },
   { value: "DISCONTINUED", label: "Discontinued" },
