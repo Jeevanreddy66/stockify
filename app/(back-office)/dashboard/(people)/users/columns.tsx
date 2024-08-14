@@ -1,6 +1,6 @@
 "use client";
 
-import type { User as PrismaUser, Role } from "@prisma/client";
+import type { UserWithRole } from "@/types";
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -13,11 +13,7 @@ import {
   ButtonColumn,
 } from "@/components/dashboard";
 
-interface IUser extends PrismaUser {
-  role: Role;
-}
-
-export const columns: ColumnDef<IUser>[] = [
+export const columns: ColumnDef<UserWithRole>[] = [
   {
     id: "select",
     header: ({ table }) => (

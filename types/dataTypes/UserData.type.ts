@@ -1,4 +1,4 @@
-import type { UserStatus } from "@prisma/client";
+import type { Role, User, UserStatus } from "@prisma/client";
 
 export type UserDataType = {
   firstName: string;
@@ -10,4 +10,8 @@ export type UserDataType = {
   roleId: string;
   status: UserStatus;
   profileImage: string;
+};
+
+export type UserWithRole = User & {
+  role: Role;
 };

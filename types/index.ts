@@ -10,6 +10,7 @@ import {
   ProductWithRelations,
   RoleDataType,
   UserDataType,
+  UserWithRole,
 } from "./dataTypes";
 
 // Import Form Types
@@ -76,6 +77,7 @@ export type {
   ProductWithRelations,
   RoleDataType,
   UserDataType,
+  UserWithRole,
 };
 
 // Export Form Types
