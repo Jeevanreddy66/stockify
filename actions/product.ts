@@ -122,6 +122,7 @@ export async function getProductById(productId: string) {
       include: {
         warehouses: true,
         suppliers: true,
+        category: true,
       },
     });
 
