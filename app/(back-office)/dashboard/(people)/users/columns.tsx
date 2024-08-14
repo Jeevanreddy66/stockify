@@ -47,7 +47,7 @@ export const columns: ColumnDef<UserWithRole>[] = [
     cell: ({ row }) => <TitleColumn row={row} accessorKey="name" />,
   },
   {
-    accessorKey: "role",
+    accessorKey: "role.displayName",
     header: "Role Name",
     cell: ({ row }) => {
       const user = row.original;

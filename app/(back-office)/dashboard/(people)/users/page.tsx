@@ -1,6 +1,6 @@
 "use client";
 
-import type { User } from "@prisma/client";
+import type { UserWithRole } from "@/types";
 
 import { FC, useEffect, useState } from "react";
 import { TableHeader, DataTable } from "@/components/dashboard";
@@ -8,7 +8,7 @@ import { columns } from "./columns";
 import { getAllUsers } from "@/actions";
 
 const UsersPage: FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserWithRole[]>([]);
 
   useEffect(() => {
     async function getUsers() {
