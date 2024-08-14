@@ -1,6 +1,8 @@
 "use client";
 
 import type { ProductWithRelations } from "@/types";
+import type { Category } from "@prisma/client";
+
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -13,7 +15,11 @@ import {
   InfoColumn,
 } from "@/components/dashboard/dataTableColumns";
 
-export const columns: ColumnDef<ProductWithRelations>[] = [
+interface IProduct extends ProductWithRelations {
+  category: Category;
+}
+
+export const columns: ColumnDef<IProduct>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -45,6 +51,17 @@ export const columns: ColumnDef<ProductWithRelations>[] = [
     accessorKey: "title",
     header: ({ column }) => <SortableColumn column={column} title="Title" />,
     cell: ({ row }) => <TitleColumn row={row} accessorKey="title" />,
+  },
+  {
+    accessorKey: "category",
+    header: "Category",
+    cell: ({ row }) => {
+      const product = row.original;
+
+      const categoryName = product.category.title;
+
+      return <h2>{categoryName}</h2>;
+    },
   },
   {
     accessorKey: "productCode",

@@ -2,8 +2,8 @@
 
 import type { TextInputPropsType } from "@/types";
 
-import { FC } from "react";
-import { CircleHelp } from "lucide-react";
+import { FC, useState } from "react";
+import { CircleHelp, Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib";
 import {
   Tooltip,
@@ -22,6 +22,11 @@ export const TextInput: FC<TextInputPropsType> = ({
   tooltipText = "",
   unit,
 }) => {
+  const [isPasswordVisible, setIsPasswordVisible] = useState<boolean>(false);
+
+  const handleShowPassword = (): void =>
+    setIsPasswordVisible(!isPasswordVisible);
+
   return (
     <div className="grid gap-2">
       <div className="flex items-center gap-2 flex-nowrap">
@@ -48,7 +53,7 @@ export const TextInput: FC<TextInputPropsType> = ({
       <div className="relative">
         <input
           id={name}
-          type={type}
+          type={isPasswordVisible ? "text" : type}
           placeholder={label}
           {...register(`${name}`, { required })}
           className={cn(
@@ -60,6 +65,20 @@ export const TextInput: FC<TextInputPropsType> = ({
           <p className="absolute right-3 top-2 text-gray-400 bg-white">
             {unit}
           </p>
+        )}
+
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={handleShowPassword}
+            className="absolute right-4 top-3 text-gray-400 bg-white"
+          >
+            {isPasswordVisible ? (
+              <EyeOff className="w-4 h-4" />
+            ) : (
+              <Eye className="w-4 h-4" />
+            )}
+          </button>
         )}
       </div>
       {errors[`${name}`] && (

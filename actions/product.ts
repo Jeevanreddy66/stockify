@@ -90,6 +90,7 @@ export async function getAllProducts(): Promise<ProductWithRelations[] | null> {
   try {
     const products = await prisma.product.findMany({
       include: {
+        category: true,
         warehouses: {
           include: {
             warehouse: true,

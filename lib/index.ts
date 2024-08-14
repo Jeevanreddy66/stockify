@@ -8,6 +8,8 @@ import { convertDataToExcel } from "./exportToExcel";
 import { formatFilename } from "./formatFileName";
 import { generateBarcode } from "./generateBarcode";
 import { convertDateToISO } from "./convertDateToISO";
+import { generateRoleName } from "./generateRoleName";
+import { generatePassword } from "./generatePassword";
 
 export {
   cn,
@@ -21,4 +23,6 @@ export {
   formatFilename,
   generateBarcode,
   convertDateToISO,
+  generateRoleName,
+  generatePassword,
 };

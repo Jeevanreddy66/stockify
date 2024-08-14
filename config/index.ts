@@ -5,6 +5,9 @@ import {
   statusOptions,
   barcodeTypeOptions,
 } from "./productConfig";
+import { permissions } from "./permissionsConfig";
+import { userStatusOptions } from "./userConfig";
+import { defaultRoleFormData } from "./roleConfig";
 
 export {
   footerConfig,
@@ -12,4 +15,7 @@ export {
   taxMethodOptions,
   statusOptions,
   barcodeTypeOptions,
+  permissions,
+  userStatusOptions,
+  defaultRoleFormData,
 };

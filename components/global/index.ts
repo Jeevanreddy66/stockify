@@ -2,6 +2,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { Logo } from "./Logo";
 import { FormInput } from "./FormInput";
 import { TextInput } from "./TextInput";
+import { PasswordInput } from "./PasswordInput";
 import { TextArea } from "./TextArea";
 import { SubmitButton } from "./SubmitButton";
 import { CloseButton } from "./CloseButton";
@@ -16,6 +17,7 @@ export {
   Logo,
   FormInput,
   TextInput,
+  PasswordInput,
   TextArea,
   SubmitButton,
   CloseButton,

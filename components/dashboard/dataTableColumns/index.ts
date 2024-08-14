@@ -5,6 +5,7 @@ import { TitleColumn } from "./TitleColumn";
 import { ActionColumn } from "./ActionColumn";
 import { StatusColumn } from "./StatusColumn";
 import { InfoColumn } from "./InfoColumn";
+import { ButtonColumn } from "./ButtonColumn";
 
 export {
   SortableColumn,
@@ -14,4 +15,5 @@ export {
   ActionColumn,
   StatusColumn,
   InfoColumn,
+  ButtonColumn,
 };

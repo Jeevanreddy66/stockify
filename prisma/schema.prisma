@@ -234,3 +234,80 @@ model Banner {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Role {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  displayName String
+  roleName    String  @unique
+  description String?
+
+  // One-to-Many Relations
+  users User[]
+
+  // Module-wise Permissions
+  canAccessDashboard Boolean @default(false)
+  canManageRoles     Boolean @default(false)
+
+  canViewBrands   Boolean @default(false)
+  canAddBrands    Boolean @default(false)
+  canEditBrands   Boolean @default(false)
+  canDeleteBrands Boolean @default(false)
+
+  canViewCategories   Boolean @default(false)
+  canAddCategories    Boolean @default(false)
+  canEditCategories   Boolean @default(false)
+  canDeleteCategories Boolean @default(false)
+
+  canViewProducts   Boolean @default(false)
+  canAddProducts    Boolean @default(false)
+  canEditProducts   Boolean @default(false)
+  canDeleteProducts Boolean @default(false)
+
+  canViewSuppliers   Boolean @default(false)
+  canAddSuppliers    Boolean @default(false)
+  canEditSuppliers   Boolean @default(false)
+  canDeleteSuppliers Boolean @default(false)
+
+  canManageUnits Boolean @default(false)
+
+  canViewUsers   Boolean @default(false)
+  canAddUsers    Boolean @default(false)
+  canEditUsers   Boolean @default(false)
+  canDeleteUsers Boolean @default(false)
+
+  canViewWarehouses   Boolean @default(false)
+  canAddWarehouses    Boolean @default(false)
+  canEditWarehouses   Boolean @default(false)
+  canDeleteWarehouses Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  PENDING
+  DEACTIVATED
+  BANNED
+}
+
+model User {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  firstName     String
+  lastName      String
+  name          String
+  email         String     @unique
+  phone         String
+  password      String
+  plainPassword String
+  status        UserStatus
+  profileImage  String?
+
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -52,6 +52,22 @@ import {
   deleteProduct,
 } from "./product";
 
+import {
+  createRole,
+  getAllRoles,
+  getRoleById,
+  updateRoleById,
+  deleteRole,
+} from "./role";
+
+import {
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  deleteUser,
+} from "./user";
+
 export {
   createCategory,
   createBulkCategories,
@@ -89,4 +105,14 @@ export {
   getProductById,
   updateProductById,
   deleteProduct,
+  createRole,
+  getAllRoles,
+  getRoleById,
+  updateRoleById,
+  deleteRole,
+  createUser,
+  getAllUsers,
+  getUserById,
+  updateUserById,
+  deleteUser,
 };

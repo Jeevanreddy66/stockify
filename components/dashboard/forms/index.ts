@@ -7,6 +7,9 @@ import { AddSupplier } from "./AddSupplier";
 import { AddUnit } from "./AddUnit";
 import { AddProduct } from "./AddProduct";
 
+import { AddRole } from "./AddRole";
+import { AddUser } from "./AddUser";
+
 export {
   FormFooter,
   FormHeader,
@@ -16,4 +19,6 @@ export {
   AddSupplier,
   AddUnit,
   AddProduct,
+  AddRole,
+  AddUser,
 };

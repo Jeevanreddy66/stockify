@@ -13,6 +13,8 @@ import {
   deleteSupplier,
   deleteUnit,
   deleteProduct,
+  deleteRole,
+  deleteUser,
 } from "@/actions";
 import { Button } from "@/components/ui/button";
 import {
@@ -63,6 +65,12 @@ export const ActionColumn: FC<ActionColumnPropsType> = ({
           break;
         case "product":
           res = await deleteProduct(id);
+          break;
+        case "role":
+          res = await deleteRole(id);
+          break;
+        case "user":
+          res = await deleteUser(id);
           break;
         default:
           break;

@@ -4,4 +4,5 @@ export type TableHeaderPropsType = {
   href: string;
   hrefText: string;
   model: string;
+  isImportModalShown?: boolean;
 };
