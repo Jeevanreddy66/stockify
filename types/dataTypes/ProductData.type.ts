@@ -5,11 +5,13 @@ import type {
   Product,
   WarehouseProduct,
   SupplierProduct,
+  Category,
 } from "@prisma/client";
 
 export type ProductWithRelations = Product & {
   warehouses: WarehouseProduct[];
   suppliers: SupplierProduct[];
+  category: Category;
 };
 
 export type ProductDataType = {
