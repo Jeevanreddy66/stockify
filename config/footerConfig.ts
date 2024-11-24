@@ -10,10 +10,7 @@ import {
   YoutubeIcon,
 } from "lucide-react";
 
-import { Logo } from "@/components/global";
-
 export const footerConfig: FooterConfigType = {
-  Logo,
   summary:
     "A Full Stack Inventory Management Application having a 3 in 1 system (Online Store, POS & Dashboard) built with modern NextJS Tech stack.",
   contacts: [

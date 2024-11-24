@@ -4,8 +4,9 @@ import Link from "next/link";
 import { FC } from "react";
 import { footerConfig } from "@/config";
 
-const { Logo, summary, contacts, navigation, policies, mediaLinks } =
-  footerConfig;
+import { Logo } from "./Logo";
+
+const { summary, contacts, navigation, policies, mediaLinks } = footerConfig;
 
 export const Footer: FC = () => {
   return (
